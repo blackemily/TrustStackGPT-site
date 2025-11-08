@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TrustStackGPT — AI Client Engine for Local Businesses</title>
+  <meta name="description" content="TrustStackGPT — turn local businesses into digital authorities with AI-driven client engines. Live demo, pricing, and free trial." />
+  <meta name="theme-color" content="#0f172a" />
+
+  <!-- Tailwind CDN for quick prototyping (replace with compiled CSS for production) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Favicons (replace with your files) -->
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- Simple SEO/OpenGraph -->
+  <meta property="og:title" content="TrustStackGPT — AI Client Engine for Local Businesses" />
+  <meta property="og:description" content="Live demo of an AI engine that builds authority, creates content, and converts leads for local businesses." />
+  <meta property="og:image" content="/og-image.png" />
+  <meta property="og:url" content="https://truststackgpt.com" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <style>
+    /* Small, self-contained styles for the demo area */
+    .monospace { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", monospace; }
+    .glass { background: rgba(255,255,255,0.04); backdrop-filter: blur(6px); }
+    .pulse-slow { animation: pulse 2.5s infinite; }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 antialiased leading-relaxed">
+  <header class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center shadow-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v4a1 1 0 001 1h3m10 0h3a1 1 0 001-1V7M7 21h10"/></svg>
+      </div>
+      <div>
+        <div class="text-xl font-semibold">TrustStackGPT</div>
+        <div class="text-xs text-slate-400">AI Client Engine — Live Demo</div>
+      </div>
+    </a>
+    <nav class="hidden md:flex items-center gap-6 text-sm text-slate-300">
+      <a href="#demo" class="hover:text-white">Live Demo</a>
+      <a href="#features" class="hover:text-white">Features</a>
+      <a href="#pricing" class="hover:text-white">Pricing</a>
+      <a href="#contact" class="hover:text-white">Contact</a>
+      <a href="#" class="ml-2 px-3 py-2 bg-cyan-500 rounded text-slate-900 font-semibold">Buy — $297</a>
+    </nav>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-6">
+    <!-- Hero -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mt-6 mb-12">
+      <div>
+        <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">AI client engines that convert<br class="hidden sm:inline">local businesses into trusted authorities</h1>
+        <p class="mt-4 text-slate-300 max-w-xl">Launch a niche-ready TrustStackGPT engine for HVAC, Chiropractic, Restaurants, or any local vertical. Live demo below — enter a business and see the engine generate a 30‑day content & outreach plan.</p>
+
+        <div class="mt-6 flex gap-3">
+          <a href="#demo" class="px-5 py-3 bg-cyan-500 rounded-md font-semibold text-slate-900 shadow hover:shadow-lg">Try the live demo</a>
+          <a href="#pricing" class="px-5 py-3 border border-slate-700 rounded-md text-slate-200 hover:bg-slate-800">Pricing & tiers</a>
+        </div>
+
+        <div class="mt-6 text-sm text-slate-400">Free 7-day trial for new subscribers. No surprise billing. Replace <em>agency hours</em> with an AI engine.</div>
+      </div>
+
+      <div class="glass p-4 rounded-lg shadow-lg">
+        <div class="flex items-center justify-between">
+          <div>
+            <div class="text-xs text-slate-400">Live demo preview</div>
+            <div class="text-sm font-medium">HVAC — "Summit Heating & Cooling"</div>
+          </div>
+          <div class="text-xs text-slate-400">Simulated — Not a live API</div>
+        </div>
+
+        <div id="demo-widget" class="mt-4 bg-[#071026] p-4 rounded text-slate-100">
+          <form id="demo-form" class="grid grid-cols-1 gap-3">
+            <label class="text-xs text-slate-400">Business name</label>
+            <input id="business" name="business" placeholder="e.g., Summit Heating & Cooling" class="w-full rounded px-3 py-2 bg-slate-800 border border-slate-700 focus:outline-none" required />
+
+            <label class="text-xs text-slate-400">Location (city, state)</label>
+            <input id="location" name="location" placeholder="e.g., Raleigh, NC" class="w-full rounded px-3 py-2 bg-slate-800 border border-slate-700" required />
+
+            <label class="text-xs text-slate-400">Primary goal</label>
+            <select id="goal" class="w-full rounded px-3 py-2 bg-slate-800 border border-slate-700">
+              <option>Generate leads</option>
+              <option>Increase bookings</option>
+              <option>Build local authority</option>
+            </select>
+
+            <div class="flex gap-2">
+              <button type="submit" class="flex-1 px-4 py-2 bg-cyan-500 rounded font-semibold">Generate plan</button>
+              <button type="button" id="reset-btn" class="px-4 py-2 border border-slate-700 rounded text-slate-300">Reset</button>
+            </div>
+          </form>
+
+          <div id="demo-output" class="mt-4 bg-slate-900 p-3 rounded monospace text-sm h-48 overflow-auto"></div>
+        </div>
+
+        <div class="mt-4 text-xs text-slate-400">Want this engine for your niche? <a href="#pricing" class="text-cyan-300 underline">Buy the starter kit</a> or contact us for white-label licensing.</div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="py-12">
+      <h2 class="text-2xl font-bold">How the engine works</h2>
+      <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-5 rounded-lg glass">
+          <h3 class="font-semibold">Authority Content</h3>
+          <p class="mt-2 text-slate-300 text-sm">AI-generated blog topics, FAQ videos, and local SEO-optimized pages — 30-day plan included.</p>
+        </div>
+        <div class="p-5 rounded-lg glass">
+          <h3 class="font-semibold">Conversion Scripts</h3>
+          <p class="mt-2 text-slate-300 text-sm">Call scripts, SMS follow-ups, and booking page copy tailored to your market.</p>
+        </div>
+        <div class="p-5 rounded-lg glass">
+          <h3 class="font-semibold">Outreach Automation</h3>
+          <p class="mt-2 text-slate-300 text-sm">AutoLeads-compatible sequences and landing pages to capture intent-based leads.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-12">
+      <h2 class="text-2xl font-bold">Pricing</h2>
+      <p class="mt-2 text-slate-400">Starter — $297 one-time | Pro — $497 | Elite — $997 (white-label + onboarding)</p>
+
+      <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-lg bg-slate-800">
+          <div class="text-sm font-semibold">Starter</div>
+          <div class="text-3xl font-bold mt-2">$297</div>
+          <ul class="mt-3 text-sm text-slate-300 space-y-2">
+            <li>1 niche engine</li>
+            <li>30-day content & outreach plan</li>
+            <li>Gumroad delivery</li>
+          </ul>
+          <a href="https://gumroad.com/l/REPLACE_WITH_YOUR_PRODUCT" class="mt-4 inline-block px-4 py-2 bg-cyan-500 rounded font-semibold text-slate-900">Buy Starter</a>
+        </div>
+
+        <div class="p-6 rounded-lg bg-slate-800 border-2 border-cyan-500">
+          <div class="text-sm font-semibold">Pro</div>
+          <div class="text-3xl font-bold mt-2">$497</div>
+          <ul class="mt-3 text-sm text-slate-300 space-y-2">
+            <li>3 niche engines</li>
+            <li>Advanced automation sequences</li>
+            <li>30-minute onboarding call</li>
+          </ul>
+          <a href="https://gumroad.com/l/REPLACE_WITH_YOUR_PRODUCT_PRO" class="mt-4 inline-block px-4 py-2 bg-cyan-500 rounded font-semibold text-slate-900">Buy Pro</a>
+        </div>
+
+        <div class="p-6 rounded-lg bg-slate-800">
+          <div class="text-sm font-semibold">Elite</div>
+          <div class="text-3xl font-bold mt-2">$997</div>
+          <ul class="mt-3 text-sm text-slate-300 space-y-2">
+            <li>White-label license</li>
+            <li>Done-for-you setup</li>
+            <li>Priority support</li>
+          </ul>
+          <a href="#contact" class="mt-4 inline-block px-4 py-2 bg-cyan-500 rounded font-semibold text-slate-900">Request Elite</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials / Case studies -->
+    <section class="py-12">
+      <h2 class="text-2xl font-bold">Proof & case studies</h2>
+      <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <blockquote class="p-5 bg-slate-800 rounded">“The TrustStackGPT engine doubled our inbound calls in 45 days.”<div class="mt-3 text-xs text-slate-400">— Local HVAC Owner</div></blockquote>
+        <blockquote class="p-5 bg-slate-800 rounded">“We booked 30% more new patients using the outreach scripts.”<div class="mt-3 text-xs text-slate-400">— Chiropractor</div></blockquote>
+        <blockquote class="p-5 bg-slate-800 rounded">“The content plan gave us a full month of blog + video topics.”<div class="mt-3 text-xs text-slate-400">— Restaurant Owner</div></blockquote>
+      </div>
+    </section>
+
+    <!-- Contact / Email capture -->
+    <section id="contact" class="py-12">
+      <h2 class="text-2xl font-bold">Get started</h2>
+      <p class="mt-2 text-slate-400">Join the free 7-day trial or book a demo. Enter your email and we'll send the starter kit and setup guide.</p>
+
+      <form id="email-capture" class="mt-4 sm:flex gap-3" action="#" method="POST">
+        <input name="email" type="email" placeholder="you@business.com" required class="flex-1 rounded px-3 py-2 bg-slate-800 border border-slate-700" />
+        <button type="submit" class="mt-2 sm:mt-0 px-4 py-2 bg-cyan-500 rounded font-semibold text-slate-900">Start 7-day trial</button>
+      </form>
+
+      <div class="mt-3 text-xs text-slate-500">By submitting you agree to receive emails. We respect your privacy.</div>
+    </section>
+
+    <footer class="py-10 text-sm text-slate-500">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        <div>© <span id="year"></span> TrustStackGPT — Built by David McCammon</div>
+        <div class="flex gap-4">
+          <a href="#" class="hover:underline">Privacy</a>
+          <a href="#" class="hover:underline">Terms</a>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Tiny scripts for demo behavior (no external API calls) -->
+  <script>
+    // Year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple simulated AI generator with typing effect
+    const form = document.getElementById('demo-form');
+    const output = document.getElementById('demo-output');
+    const resetBtn = document.getElementById('reset-btn');
+
+    function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+    function sanitize(input){
+      const div = document.createElement('div');
+      div.textContent = input;
+      return div.innerHTML;
+    }
+
+    async function typeText(el, text){
+      el.innerHTML = '';
+      for(let i=0;i<text.length;i++){
+        el.innerHTML += text[i];
+        el.scrollTop = el.scrollHeight;
+        await sleep(18 + Math.random()*25);
+      }
+    }
+
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const business = document.getElementById('business').value.trim();
+      const location = document.getElementById('location').value.trim();
+      const goal = document.getElementById('goal').value;
+      if(!business || !location) return;
+
+      // Build a simulated response (replace with real API call in production)
+      const plan = `Generating 30-day plan for ${sanitize(business)} (${sanitize(location)}) — Goal: ${sanitize(goal)}\n\n`+
+`Top 3 priorities:\n1) Local SEO — optimize Google Business Profile + 5 geo-targeted service pages\n2) Conversion Funnel — 3-step landing (Book → Call → SMS follow-up)\n3) Outreach — 5-message AutoLeads SMS + LinkedIn touchpoints\n\nSample 7-day content snippet:\nDay 1: Blog — "Why Your HVAC System Needs Fall Maintenance in ${sanitize(location)}" (1,000‑1200 words + FAQ)\nDay 3: FAQ Video (30s) — "How to stop your heat from running constantly" (script included)\nDay 5: SMS blast — "Bundle discount for first-time customers" (AB test copy)\n\nConversion script (lead capture):\nAgent: \"Hi, is this ${sanitize(business)}? We found an open slot this week for heating tune-ups. Can I grab your best contact number?\"\n\nEstimated impact: +30–50% monthly inbound in 60–90 days when combined with paid placements.`;
+
+      await typeText(output, plan);
+
+      // After generation, show CTA
+      const cta = document.createElement('div');
+      cta.className = 'mt-3 p-3 bg-slate-800 rounded text-sm';
+      cta.innerHTML = `Ready to deploy this engine for your business? <a href=\"https://gumroad.com/l/REPLACE_WITH_YOUR_PRODUCT\" class=\"text-cyan-300 underline\">Buy the Starter Kit</a> — or <a href=\"#contact\" class=\"text-cyan-300 underline\">request Elite setup</a>.`;
+      output.appendChild(cta);
+
+    });
+
+    resetBtn.addEventListener('click', ()=>{
+      document.getElementById('business').value = '';
+      document.getElementById('location').value = '';
+      output.innerHTML = '';
+    });
+
+    // Email capture (placeholder behavior)
+    const emailForm = document.getElementById('email-capture');
+    emailForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const email = (emailForm.querySelector('input[name="email"]').value || '').trim();
+      if(!email) return;
+      // Replace with real integration: AWeber, Mailchimp, ConvertKit, etc.
+      alert('Thanks — we\'ll send your 7-day trial info to ' + email);
+      emailForm.reset();
+    });
+
+    // Placeholder for analytics / pixel
+    window.truststackPixel = function(){
+      // Replace with Google Analytics / Facebook Pixel / Segment code here
+      console.log('TrustStack pixel placeholder — replace with real script.');
+    }
+  </script>
+</body>
+</html>
